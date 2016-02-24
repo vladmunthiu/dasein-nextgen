@@ -3,7 +3,7 @@ package azure;
 import azure.compute.AzureGetVirtualMachineAction;
 import com.google.inject.AbstractModule;
 import core.CloudProvider;
-import core.GenericSupport;
+import core.SupportFactory;
 import core.interfaces.VirtualMachineSupport;
 
 /**
@@ -17,7 +17,7 @@ public class AzureComputeServiceModule extends AbstractModule{
     }
     @Override
     protected void configure() {
-        GenericSupport<VirtualMachineSupport> virtualMachineSupport = new GenericSupport<VirtualMachineSupport>(VirtualMachineSupport.class);
+        SupportFactory<VirtualMachineSupport> virtualMachineSupport = new SupportFactory<VirtualMachineSupport>(VirtualMachineSupport.class);
         virtualMachineSupport.set("getVirtualMachines", new AzureGetVirtualMachineAction(this.cloudProvider));
 
         bind(VirtualMachineSupport.class).toInstance(virtualMachineSupport.getInstance());

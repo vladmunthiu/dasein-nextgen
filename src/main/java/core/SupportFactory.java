@@ -14,11 +14,11 @@ import java.util.HashMap;
 /**
  * Created by vmunthiu on 2/15/2016.
  */
-public class GenericSupport<T> {
+public class SupportFactory<T> {
     private Class<T> classType;
     private GenericInvocationHandler handler;
 
-    public GenericSupport(Class<T> classType) {
+    public SupportFactory(Class<T> classType) {
         this.classType = classType;
         this.handler = new GenericInvocationHandler();
     }

@@ -6,7 +6,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import core.CloudProvider;
-import core.GenericSupport;
+import core.SupportFactory;
 import core.interfaces.VirtualMachineSupport;
 import core.requests.Get;
 import org.apache.http.client.methods.RequestBuilder;
@@ -45,7 +45,7 @@ public class AzurePackComputeServiceModule extends AbstractModule {
     }
 
     private VirtualMachineSupport getVirtualMachineSupportInstance() {
-        final GenericSupport<VirtualMachineSupport> virtualMachineSupport = new GenericSupport<VirtualMachineSupport>(VirtualMachineSupport.class);
+        final SupportFactory<VirtualMachineSupport> virtualMachineSupport = new SupportFactory<VirtualMachineSupport>(VirtualMachineSupport.class);
 
         virtualMachineSupport.set("getVirtualMachines", new AzurePackGetVirtualMachinesAction(this.cloudProvider));
         virtualMachineSupport.set("launch", new AzurePackLaunchVMAction(this.cloudProvider));
